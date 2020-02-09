@@ -1,0 +1,11 @@
+#Sat Aug 06 17:01:23 CEST 2011
+eclipse.preferences.version=1
+encoding//application/controllers/PortfolioController.php=UTF-8
+encoding//application/forms/ItemForm.php=UTF-8
+encoding//application/forms/PortfolioForm.php=UTF-8
+encoding//application/layouts/scripts/layout.phtml=UTF-8
+encoding//application/views/scripts/article/add.phtml=UTF-8
+encoding//application/views/scripts/article/edit.phtml=UTF-8
+encoding//application/views/scripts/index/index.phtml=UTF-8
+encoding//public/css/global.css=UTF-8
+encoding//public/js/jquery.validate.js=UTF-8

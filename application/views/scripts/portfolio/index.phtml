@@ -1,0 +1,41 @@
+<div id="menuleft">
+      				<div id="arrowright"><p class="articlespage"> &nbsp;&nbsp;&nbsp;&nbsp; Portfolio  </p></div>
+      				
+      				<?php if($this->items->count()): ?>
+	
+					<?php foreach($this->items as $item): ?>
+	
+					<div id="list">- <?php echo $item->i_name ?></div>
+	 	  
+					<?php endforeach; ?>
+
+					<?php endif; ?> 
+      				
+</div> 
+
+<div id="content">
+
+	<?php if($this->items->count()): ?>
+	
+		<?php foreach($this->items as $item): ?>
+	
+			<div id="Articles">
+				<div id="Title"><?php echo $item->i_name ?></div>
+				<div class="text"><?php echo $item->i_text ?></div>
+			</div>			
+	 	  
+		<?php endforeach; ?>
+
+		<?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination_slider.phtml', array('query' => $this->query)) ?>
+	
+	<?php endif; ?>
+<script type="text/javascript">
+$(function() {
+	$('#gallery a').lightBox({fixedNavigation:true});
+});
+
+</script>
+	<div id="gallery">
+		<a href="../images/test.PNG"><img src="../images/test.PNG" width="72" height="72" alt="" /></a>
+	</div>
+</div>

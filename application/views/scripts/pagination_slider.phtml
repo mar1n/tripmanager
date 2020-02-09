@@ -1,0 +1,49 @@
+<?php if ($this->pageCount): ?>
+	
+	<?php if(!$this->query): ?>
+		<?php $this->query = null; ?>
+	<?php endif; ?>
+
+<div id="pagination">
+<div id="helga">
+      <div class="prev">
+          <a href="<?php echo $this->url(array('page' => 1)) ?><?php echo isset($this->query) ? '?' . $this->query : '' ?>">
+          <!--   początek -->
+          </a>
+      </div>
+      <div class="prev">
+        <?php if (isset($this->previous)): ?>
+          <a href="<?php echo $this->url(array('page' => $this->previous)) ?><?php echo isset($this->query) ? '?' . $this->query : '' ?>">
+            &lt; poprzedni
+          </a>
+     	<?php endif ?>
+      </div>
+	<?php if(count($this->pagesInRange) > 1): ?>
+      <?php foreach ($this->pagesInRange as $page): ?>
+        <div class="number">
+       <?php if ($page != $this->current): ?>
+            <a href="<?php echo $this->url(array('page' => $page)) ?><?php echo isset($this->query) ? '?' . $this->query : '' ?>">
+        		<?php echo $page ?>
+            </a>
+       <?php else: ?>
+      	<?php echo $page ?>
+       <?php endif ?>
+        </div>
+      <?php endforeach ?>
+	<?php endif;?>
+      
+      <div class="next">
+        <?php if (isset($this->next)): ?>
+          <a href="<?php echo $this->url(array('page' => $this->next)) ?><?php echo isset($this->query) ? '?' . $this->query : '' ?>">
+            następny &gt;
+          </a>
+        <?php endif ?>
+      </div>
+      <div class="next">
+       <a href="<?php echo $this->url(array('page' => $this->last)) ?><?php echo isset($this->query) ? '?' . $this->query : '' ?>">
+           <!--   koniec -->
+          </a>
+      </div>
+</div>
+</div>
+<?php endif ?>

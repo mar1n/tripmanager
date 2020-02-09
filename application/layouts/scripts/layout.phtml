@@ -1,0 +1,111 @@
+<?php
+//$this->layout()->userForm = $this->action('index', 'user');
+?>
+<?php echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="programowanie stron, programowanie stron internetowych,  programowanie php, programowanie ostrów, programowanie kalisz, programowanie krotoszyn, programowanie php ostrów, programowanie php kalisz, programowanie php krotoszyn, tworzenie stron, tworzenie stron internetowych, programista php, strony www, programowanie zend framework"/>
+  <title>Elementy WWW</title>
+  <?php echo $this->headLink()
+          			->prependStylesheet($this->baseUrl().'/css/global.css')
+          			->prependStylesheet($this->baseUrl().'/css/articles.css')
+         			->prependStylesheet($this->baseUrl().'/css/contact.css')
+         			->prependStylesheet($this->baseUrl().'/css/portfolio.css')
+         			->prependStylesheet($this->baseUrl().'/css/shCore.css')
+         			->prependStylesheet($this->baseUrl().'/css/shThemeDefault.css')
+					->prependStylesheet($this->baseUrl().'/css/shCoreDefault.css')
+          			->prependStylesheet($this->baseUrl().'/css/jquery.lightbox-0.5.css'); ?>
+  <script type="text/javascript" src="/js/fckeditor/fckeditor.js"></script>
+  <script type="text/javascript" src="/js/jquery-1.6.2.js"></script>
+  <script type="text/javascript" src="/js/jquery.validate.js"></script>
+  <script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script>
+  <script src='/js/shCore.js' type='text/javascript'></script> 
+<script src='/js/shBrushPhp.js' type='text/javascript'></script> 
+<script src='/js/shBrushXml.js' type='text/javascript'></script>
+<script src='/js/shBrushSql.js' type='text/javascript'></script> 
+<script language='javascript'> 
+SyntaxHighlighter.all();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26654930-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+  <body>
+      <div id="page">
+      		<div id="top">
+      			<div id="topleft">
+      			</div>
+      			<div id="topright">
+      				<a class="contact" href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default',  true); ?>">Kontakt</a> 
+      				<a class="portfolio" href="<?php echo $this->url(array('controller'=>'portfolio', 'action'=>'index'), 'default',  true); ?>">Portfolio</a>
+      				<a class="articles" href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), 'default',  true); ?>">Artykuły</a>
+      				<!--  <a class="" href=""><?php
+//echo $this->layout()->userForm;
+?></a>  -->     		
+      			</div>
+      		</div>
+      		<div id="baner">
+      		</div>
+      		<div id="panel">
+      			<a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), 'default',  true); ?>">
+      	     		<div class="line">
+      	     			<div id="articles">
+      	    				<p class="articlesshow">Artykuły</p>
+      	    				<br />
+      	    				<p class="articlesshow2">Zapraszam do czytania Artykułów</p>								
+      					</div>
+      				</div>
+      			</a>
+      		      		
+      			<a href="<?php echo $this->url(array('controller'=>'portfolio', 'action'=>'index'), 'default',  true); ?>">     	
+      				<div class="line">
+      					<div id="brush">
+      						<p class="articlesshow">Portfolio</p>
+      	    				<br />
+      	    				<p class="articlesshow3">Zapraszam do zapoznania się z moim portfolio</p>						
+      					</div>
+      				</div>
+      			</a>
+      		  	<a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default',  true); ?>">   
+      				<div class="line">
+      					<div id="contact">
+      						<p class="articlesshow">Kontakt</p>
+      	    				<br />
+      	    				<p class="articlesshow3">Zapraszam do kontaktu</p>
+      					</div>
+      				</div>
+      			</a>
+      		
+      		</div>  
+      		
+      		<div id="bodycontent">
+      			<div id="tlo">
+      			 
+      				<?php echo $this->layout()->content ?>
+      		  	
+      			</div>
+      			<div id="footerbackground">
+					<div id="footer">
+						<div id="footerleft">
+						</div>
+						<p class="footer">﻿﻿Copyright 2011 by <a href="mailto:karkonosze@promax.media.pl">Simon</a> Powered by Zend Framework</p>
+					</div>
+				</div>
+      		</div>
+      	</div>
+      	   
+  </body>
+
+</html>
