@@ -43,7 +43,6 @@ class UserController extends Zend_Controller_Action
 
                         return;
                     }
-
                     unset($formData['Save']);
                     $itemsDAO->update($formData, $id);
 
