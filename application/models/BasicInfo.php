@@ -16,7 +16,7 @@ class Model_BasicInfo extends Model_Table {
 
     public function update($data, $itemId)
     {
-        unset($data['Zapisz']);
+        unset($data['Save']);
 
         parent::update($data, 'id = '.$itemId);
     }

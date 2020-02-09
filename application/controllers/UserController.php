@@ -14,47 +14,7 @@ class UserController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()) {
             $this->view->identity = $auth->getIdentity();
-            $userForm = new Form_BasicInfo();
-
-            $userModel = new Model_BasicInfo();
-
-            $userId = $auth->getIdentity()->id;
-            $findById = $userModel->fetchRowById($userId);
-
-            $this->view->form = $userForm;
-
-            $itemsDAO = new  Model_BasicInfo();
-
-            $itemForm = new Form_BasicInfo();
-            $id = $userId;
-
-            $item = $itemsDAO->fetchRowById($id)->toArray();
-
-            if($item){
-
-                if($this->getRequest()->isPost() ) {
-
-                    $formData = $this->getRequest()->getPost();
-
-                    if( !$itemForm->isValid($formData) ) {
-                        $itemForm->populate($formData);
-
-                        $this->view->form = $itemForm;
-
-                        return;
-                    }
-                    unset($formData['Save']);
-                    $itemsDAO->update($formData, $id);
-
-                    $this->_redirect('user/');
-
-                } else {
-                    $itemForm->populate($item);
-                    $this->view->form = $itemForm;
-                }
-            } else {
-                $this->_forward('error404', 'error', 'default');
-            }
+            $id = $auth->getIdentity()->id;
         }
     }
 
@@ -80,13 +40,47 @@ class UserController extends Zend_Controller_Action
 
     public function listAction()
     {
-        // action body
-    	$currentUsers = Model_User::getUsers();
-		if ($currentUsers->count() > 0) {
-		$this->view->users = $currentUsers;
-		} else {
-		$this->view->users = null;
-		}
+
+        $id = Zend_Auth::getInstance()->getIdentity()->id;
+        $itemsDAO = new  Model_BasicInfo();
+
+        $itemForm = new Form_BasicInfo();
+
+        //$id = Zend_Filter_Int::filter($this->_getParam('id'));
+
+        $item = $itemsDAO->fetchRowById($id);
+
+        if($item){
+
+            if($this->_request->isPost() ) {
+
+                $formData = $this->_request->getPost();
+
+                if( !$itemForm->isValid($formData) ) {
+                    $itemForm->populate($formData);
+
+                    $this->view->form = $itemForm;
+
+                    //$this->_helper->flashMessenger->addMessage('Wystąpił błąd podczas sprawdzania formularza. Popraw zaznaczone pola.');
+                    return;
+                }
+
+                $itemsDAO->update($formData, $id);
+                //$id = 'produkt-edytuj/'.$item->i_id;
+
+                $this->_redirect('/user/list');
+                // $this->_helper->flashMessenger->addMessage('Dziękujemy za dodanie.');
+                // $this->_helper->redirector->gotoRouteAndExit(array('page' => 1), 'account-item-list', true);
+            } else {
+
+                $itemForm->populate($item->toArray());
+
+                $this->view->form = $itemForm;
+            }
+
+        } else {
+            $this->_forward('error404', 'error', 'default');
+        }
     }
 
     public function updateAction()
@@ -96,15 +90,17 @@ class UserController extends Zend_Controller_Action
 		$userForm->removeElement('password');
 		$userModel = new Model_User();
 		if ($this->_request->isPost()) {
-			if ($userForm->isValid($_POST)) {
-		$userModel->updateUser(
-		$userForm->getValue('id'),
-		$userForm->getValue('username'),
-		$userForm->getValue('first_name'),
-		$userForm->getValue('last_name'),
-		$userForm->getValue('role')
-		);
-		return $this->_forward('list'); }
+                if ($userForm->isValid($_POST)) {
+                    $userModel->updateUser(
+                        $userForm->getValue('id'),
+                        $userForm->getValue('username'),
+                        $userForm->getValue('first_name'),
+                        $userForm->getValue('last_name'),
+                        $userForm->getValue('role')
+                    );
+
+                    return $this->_forward('list');
+                }
 		} else {
 		$id = $this->_request->getParam('id');
 		$currentUser = $userModel->find($id)->current();
@@ -174,7 +170,7 @@ class UserController extends Zend_Controller_Action
 		$storage = $auth->getStorage();
 		$storage->write($authAdapter->getResultRowObject(
 		array('id','username' , 'first_name' , 'last_name', 'role')));
-		return $this->_forward('index'); } else {
+		return $this->_redirect('/user/list'); } else {
 		$this->view->loginMessage = "Sorry, your username or
 		password was incorrect";
 		}

@@ -12,13 +12,6 @@ class Form_BasicInfo extends Zend_Form {
         $email->setLabel('Email')
             ->setRequired(true)
             ->addFilter('StripTags')
-            ->addValidators(array(
-                array('NotEmpty', true,
-                array('messages' => array(
-                    'isEmpty' => 'Pleas pass email',
-                ))),
-                array('EmailAddress', true)
-            ))
             ->setAttrib('maxlength', '255');
 
 
@@ -26,33 +19,18 @@ class Form_BasicInfo extends Zend_Form {
 
         $name->setLabel('Name')
             ->setRequired(true)
-            ->addValidators(array(
-                array('NotEmpty', true, array('messages' => array(
-                    'isEmpty' => 'Pleas pass your name',
-                )))
-            ))
             ->setAttrib('maxlength', '255');
 
         $address = new Zend_Form_Element_Text('address');
 
         $address->setLabel('Address')
             ->setRequired(true)
-            ->addValidators(array(
-                array('NotEmpty', true, array('messages' => array(
-                    'isEmpty' => 'Pleas pass your address',
-                )))
-            ))
             ->setAttrib('maxlength', '255');
 
         $city = new Zend_Form_Element_Text('city');
 
         $city->setLabel('City')
             ->setRequired(true)
-            ->addValidators(array(
-                array('NotEmpty', true, array('messages' => array(
-                    'isEmpty' => 'Pleas pass name of your city',
-                )))
-            ))
             ->setAttrib('maxlength', '255');
 
 
@@ -62,11 +40,6 @@ class Form_BasicInfo extends Zend_Form {
 
         $country->setLabel('Country')
             ->setRequired(true)
-            ->addValidators(array(
-                array('NotEmpty', true, array('messages' => array(
-                    'isEmpty' => 'Pleas pass name of country',
-                )))
-            ))
             ->setAttrib('maxlength', '255');
 
 
