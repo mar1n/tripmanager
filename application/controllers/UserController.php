@@ -16,14 +16,11 @@ class UserController extends Zend_Controller_Action
             $this->view->identity = $auth->getIdentity();
             $userForm = new Form_BasicInfo();
 
-//            $userForm->setAction('/user/update');
-//            $userForm->removeElement('password');
             $userModel = new Model_BasicInfo();
 
             $userId = $auth->getIdentity()->id;
             $findById = $userModel->fetchRowById($userId);
 
-            //$userForm->populate($findById->toArray());
             $this->view->form = $userForm;
 
             $itemsDAO = new  Model_BasicInfo();
@@ -32,7 +29,7 @@ class UserController extends Zend_Controller_Action
             $id = $userId;
 
             $item = $itemsDAO->fetchRowById($id)->toArray();
-            print_r($this->getRequest()->getPost());
+
             if($item){
 
                 if($this->getRequest()->isPost() ) {
@@ -44,32 +41,22 @@ class UserController extends Zend_Controller_Action
 
                         $this->view->form = $itemForm;
 
-                        //$this->_helper->flashMessenger->addMessage('Wystąpił błąd podczas sprawdzania formularza. Popraw zaznaczone pola.');
                         return;
                     }
-                    $test = array(
-                        "name" => 'Szymon Daaaa'
-                    );
+
                     unset($formData['Save']);
                     $itemsDAO->update($formData, $id);
-                    //$id = 'produkt-edytuj/'.$item->i_id;
 
                     $this->_redirect('user/');
-                    // $this->_helper->flashMessenger->addMessage('Dziękujemy za dodanie.');
-                    // $this->_helper->redirector->gotoRouteAndExit(array('page' => 1), 'account-item-list', true);
+
                 } else {
-
                     $itemForm->populate($item);
-
                     $this->view->form = $itemForm;
                 }
-
             } else {
                 $this->_forward('error404', 'error', 'default');
             }
         }
-
-
     }
 
     public function createAction()
