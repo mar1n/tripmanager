@@ -463,7 +463,7 @@
       <workItem from="1581115441339" duration="5314000" />
       <workItem from="1581124692581" duration="182000" />
       <workItem from="1581124896412" duration="18881000" />
-      <workItem from="1581260727376" duration="751000" />
+      <workItem from="1581260727376" duration="783000" />
     </task>
     <task id="LOCAL-00001" summary="my first commit made in phpstorem(IDE)">
       <created>1581261402312</created>
@@ -486,11 +486,18 @@
       <option name="project" value="LOCAL" />
       <updated>1581261471671</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="my first commit made in phpstorem(IDE)">
+      <created>1581261485649</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1581261485649</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25128000" />
+    <option name="totallyTimeSpent" value="25160000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
