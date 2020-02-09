@@ -1,11 +1,11 @@
 <?php
-class Form_BasicInfo extends Zend_Form {
+class Form_Passangers extends Zend_Form {
     public function __construct()
     {
         parent::__construct();
 
 
-        $this->setAttrib('id', 'basicinfo');
+        $this->setAttrib('id', 'item');
 
         $email = new Zend_Form_Element_Text('email');
 

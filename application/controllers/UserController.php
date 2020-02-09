@@ -185,5 +185,18 @@ class UserController extends Zend_Controller_Action
 		$authAdapter->clearIdentity();
     }
 
+    public function passangersAction()
+    {
+        // Action body
+        $passangersForm = new Form_Passangers();
+
+        $this->view->form = $passangersForm;
+    }
+
+    public function tripsAction()
+    {
+        // Action body
+    }
+
 
 }
