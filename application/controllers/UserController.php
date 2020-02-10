@@ -81,6 +81,10 @@ class UserController extends Zend_Controller_Action
         } else {
             $this->_forward('error404', 'error', 'default');
         }
+
+        $passangers = new Model_Passangers();
+
+        $this->view->passangers = $passangers->fetchAll();
     }
 
     public function updateAction()
@@ -203,16 +207,21 @@ class UserController extends Zend_Controller_Action
 
                 $this->view->form = $itemForm;
 
-                /*$this->_helper->flashMessenger->addMessage('Wystąpił błąd podczas sprawdzania formularza. Popraw zaznaczone pola.'); */
                 return;
             }
 
             $itemsDAO->insert($formData);
-            print  'Artykuł został dodany.';
+            print  'Passanger has been added.';
 
-            /* $this->_helper->flashMessenger->addMessage('Dziękujemy za dodanie.');
-             $this->_helper->redirector->gotoRouteAndExit(array('page' => 1), 'account-item-list', true);*/
         }
+    }
+
+    public function deletepassangerAction()
+    {
+        $id = $this->_request->getParam('id');
+        $passangerModel = new Model_Passangers();
+        $passangerModel->deletePassangers($id);
+        return $this->_redirect('/user/list');
     }
 
     public function tripsAction()

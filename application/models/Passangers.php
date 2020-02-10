@@ -36,7 +36,7 @@ class Model_Passangers extends Model_Table {
         return new Zend_Db_Table_Row($params);
     }
 
-    public function deleteUser($id)
+    public function deletePassangers($id)
     {
         // fetch the user's row
         $rowUser = $this->find($id)->current();

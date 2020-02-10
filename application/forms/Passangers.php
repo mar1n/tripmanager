@@ -6,25 +6,15 @@ class Form_Passangers extends Zend_Form {
 
         $this->setAttrib('id', 'passangers');
 
-//        $title = new Zend_Form_Element_Multiselect('title');
-//
-//        $title->setLabel('Title')
-//            ->setRequired(true);
-//        $title->addMultiOption(array(
-//            "Mr" => 1,
-//            "Ms" => 2,
-//        ));
-
         $title = new Zend_Form_Element_Select('title', array(
             "label" => "Title",
             "required" => true,
         ));
         $title->addMultiOptions(array(
-            "lady" => "Ms",
-            "man" => "Mr",
+            "Miss" => "Miss",
+            "Mr" => "Mr",
         ));
 
-        //$form->addElement($multi);
 
         $firstname = new Zend_Form_Element_Text('firstname');
 

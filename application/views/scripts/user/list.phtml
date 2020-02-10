@@ -16,4 +16,30 @@ if($this->users != null) {
 <?php }else{?>
 <p>You do not have any users yet.</p>
 <?php echo $this->form; }?>
+<div class="passangers">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>passportID</th>
+        </tr>
+        <p><a href="<?php echo $this->url(array('controller'=>'user',
+                'action'=>'passangers'));?>">Add new Passangers</a></p>
+        <?php foreach($this->passangers as $passanger) : ?>
+            <tr>
+                <td><?php echo $this->escape($passanger->title);?></td>
+                <td><?php echo $this->escape($passanger->firstname);?></td>
+                <td><?php echo $this->escape($passanger->surname);?></td>
+                <td><?php echo $this->escape($passanger->passportID);?></td>
+                <td>
+                    <a href="<?php echo $this->url(array('controller'=>'index',
+                        'action'=>'edit', 'id'=>$passanger->id));?>">Edit</a>
+                    <a href="<?php echo $this->url(array('controller'=>'user',
+                        'action'=>'deletepassanger', 'id'=>$passanger->id));?>">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
 <p><a href='/user/create'>Create a new user</a></p>
