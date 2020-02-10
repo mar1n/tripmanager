@@ -4,50 +4,49 @@ class Form_Passangers extends Zend_Form {
     {
         parent::__construct();
 
+        $this->setAttrib('id', 'passangers');
 
-        $this->setAttrib('id', 'item');
+//        $title = new Zend_Form_Element_Multiselect('title');
+//
+//        $title->setLabel('Title')
+//            ->setRequired(true);
+//        $title->addMultiOption(array(
+//            "Mr" => 1,
+//            "Ms" => 2,
+//        ));
 
-        $email = new Zend_Form_Element_Text('email');
+        $title = new Zend_Form_Element_Select('title', array(
+            "label" => "Title",
+            "required" => true,
+        ));
+        $title->addMultiOptions(array(
+            "lady" => "Ms",
+            "man" => "Mr",
+        ));
 
-        $email->setLabel('Email')
+        //$form->addElement($multi);
+
+        $firstname = new Zend_Form_Element_Text('firstname');
+
+        $firstname->setLabel('First name')
             ->setRequired(true)
-            ->addFilter('StripTags')
             ->setAttrib('maxlength', '255');
 
+        $surname = new Zend_Form_Element_Text('surname');
 
-        $name = new Zend_Form_Element_Text('name');
-
-        $name->setLabel('Name')
+        $surname->setLabel('Surname')
             ->setRequired(true)
             ->setAttrib('maxlength', '255');
 
-        $address = new Zend_Form_Element_Text('address');
+        $passportID = new Zend_Form_Element_Text('passportID');
 
-        $address->setLabel('Address')
+        $passportID->setLabel('PassportID')
             ->setRequired(true)
             ->setAttrib('maxlength', '255');
-
-        $city = new Zend_Form_Element_Text('city');
-
-        $city->setLabel('City')
-            ->setRequired(true)
-            ->setAttrib('maxlength', '255');
-
 
         $submit = new Zend_Form_Element_Submit('Save');
 
-        $country = new Zend_Form_Element_Text('country');
-
-        $country->setLabel('Country')
-            ->setRequired(true)
-            ->setAttrib('maxlength', '255');
-
-
-
-        $this->addElements(array($email, $name, $address, $city, $country, $submit));
-
-
-
+        $this->addElements(array($title, $firstname, $surname, $passportID, $submit));
 
     }
 }

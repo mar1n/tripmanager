@@ -188,9 +188,31 @@ class UserController extends Zend_Controller_Action
     public function passangersAction()
     {
         // Action body
-        $passangersForm = new Form_Passangers();
+        $itemsDAO = new Model_Passangers();
 
-        $this->view->form = $passangersForm;
+        $itemForm = new Form_Passangers();
+
+        $this->view->form  = $itemForm;
+
+        if( $this->_request->isPost() ) {
+
+            $formData = $this->_request->getPost();
+
+            if( !$itemForm->isValid($formData) ) {
+                $itemForm->populate($formData);
+
+                $this->view->form = $itemForm;
+
+                /*$this->_helper->flashMessenger->addMessage('Wystąpił błąd podczas sprawdzania formularza. Popraw zaznaczone pola.'); */
+                return;
+            }
+
+            $itemsDAO->insert($formData);
+            print  'Artykuł został dodany.';
+
+            /* $this->_helper->flashMessenger->addMessage('Dziękujemy za dodanie.');
+             $this->_helper->redirector->gotoRouteAndExit(array('page' => 1), 'account-item-list', true);*/
+        }
     }
 
     public function tripsAction()
