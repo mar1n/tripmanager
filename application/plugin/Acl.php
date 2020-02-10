@@ -12,27 +12,16 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract
 		$acl->addRole(new Zend_Acl_Role('user'), 'guest');
 		$acl->addRole(new Zend_Acl_Role('administrator'), 'user');
 		// add the resources
-		$acl->add(new Zend_Acl_Resource('index'));
-		$acl->add(new Zend_Acl_Resource('error'));
-		$acl->add(new Zend_Acl_Resource('article'));
-		$acl->add(new Zend_Acl_Resource('portfolio'));
-		$acl->add(new Zend_Acl_Resource('contact'));
 		$acl->add(new Zend_Acl_Resource('user'));
-		
 		// set up the access rules
-		$acl->allow(null, array('index', 'error'));
-		// a guest can only read content and login
-		$acl->allow('guest', 'article');
-		$acl->allow('guest', 'portfolio');
-		$acl->allow('guest', 'contact');
+
 		$acl->allow('guest', 'user');
-		// cms users can also work with content
-		$acl->deny('guest', 'article', array('add', 'edit'));
+
         $acl->deny('guest', 'user', array('list'));
         $acl->deny('guest', 'user', array('passangers'));
 		// administrators can do anything
-        $acl->allow('administrator', 'article', array('add', 'edit'));
         $acl->allow('administrator', 'user', array('list'));
+        $acl->allow('administrator', 'user', array('passangers'));
 
 		
 		// fetch the current user

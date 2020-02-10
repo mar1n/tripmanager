@@ -46,8 +46,6 @@ class UserController extends Zend_Controller_Action
 
         $itemForm = new Form_BasicInfo();
 
-        //$id = Zend_Filter_Int::filter($this->_getParam('id'));
-
         $item = $itemsDAO->fetchRowById($id);
 
         if($item){
@@ -61,16 +59,13 @@ class UserController extends Zend_Controller_Action
 
                     $this->view->form = $itemForm;
 
-                    //$this->_helper->flashMessenger->addMessage('Wystąpił błąd podczas sprawdzania formularza. Popraw zaznaczone pola.');
                     return;
                 }
 
                 $itemsDAO->update($formData, $id);
-                //$id = 'produkt-edytuj/'.$item->i_id;
 
                 $this->_redirect('/user/list');
-                // $this->_helper->flashMessenger->addMessage('Dziękujemy za dodanie.');
-                // $this->_helper->redirector->gotoRouteAndExit(array('page' => 1), 'account-item-list', true);
+
             } else {
 
                 $itemForm->populate($item->toArray());
@@ -211,7 +206,8 @@ class UserController extends Zend_Controller_Action
             }
 
             $itemsDAO->insert($formData);
-            print  'Passanger has been added.';
+
+            return $this->_redirect('/user/list');
 
         }
     }
@@ -228,6 +224,5 @@ class UserController extends Zend_Controller_Action
     {
         // Action body
     }
-
 
 }
