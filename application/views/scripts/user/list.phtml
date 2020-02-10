@@ -33,8 +33,6 @@ if($this->users != null) {
                 <td><?php echo $this->escape($passanger->surname);?></td>
                 <td><?php echo $this->escape($passanger->passportID);?></td>
                 <td>
-                    <a href="<?php echo $this->url(array('controller'=>'index',
-                        'action'=>'edit', 'id'=>$passanger->id));?>">Edit</a>
                     <a href="<?php echo $this->url(array('controller'=>'user',
                         'action'=>'deletepassanger', 'id'=>$passanger->id));?>">Delete</a>
                 </td>
@@ -42,4 +40,3 @@ if($this->users != null) {
         <?php endforeach; ?>
     </table>
 </div>
-<p><a href='/user/create'>Create a new user</a></p>

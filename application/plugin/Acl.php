@@ -29,6 +29,7 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract
 		// cms users can also work with content
 		$acl->deny('guest', 'article', array('add', 'edit'));
         $acl->deny('guest', 'user', array('list'));
+        $acl->deny('guest', 'user', array('passangers'));
 		// administrators can do anything
         $acl->allow('administrator', 'article', array('add', 'edit'));
         $acl->allow('administrator', 'user', array('list'));
