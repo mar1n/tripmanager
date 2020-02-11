@@ -199,12 +199,12 @@ class UserController extends Zend_Controller_Action
 
             if( !$itemForm->isValid($formData) ) {
                 $itemForm->populate($formData);
-
+                //$itemForm->addElement(array("customer_ID", "1"));
                 $this->view->form = $itemForm;
 
                 return;
             }
-
+                print_r($itemForm);
             $itemsDAO->insert($formData);
 
             return $this->_redirect('/user/list');

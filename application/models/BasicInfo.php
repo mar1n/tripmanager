@@ -1,7 +1,7 @@
 <?php
 class Model_BasicInfo extends Model_Table {
 
-        protected $_name 	= 'basicinfo';
+        protected $_name 	= 'customer';
         protected $_primary = 'id';
 
 

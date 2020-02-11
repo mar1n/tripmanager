@@ -2,7 +2,7 @@
 
 class Model_Passangers extends Model_Table {
 
-    protected $_name 	= 'passangers';
+    protected $_name 	= 'passangerlist';
 
 
     public function insert($data)

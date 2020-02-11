@@ -16,7 +16,7 @@ class Form_Passangers extends Zend_Form {
         ));
 
 
-        $firstname = new Zend_Form_Element_Text('firstname');
+        $firstname = new Zend_Form_Element_Text('first_name');
 
         $firstname->setLabel('First name')
             ->setRequired(true)
@@ -35,8 +35,9 @@ class Form_Passangers extends Zend_Form {
             ->setAttrib('maxlength', '255');
 
         $submit = new Zend_Form_Element_Submit('Save');
-
-        $this->addElements(array($title, $firstname, $surname, $passportID, $submit));
+        $uId = $this->createElement('hidden', 'customer_ID');
+        $uId->setValue(Zend_Auth::getInstance()->getIdentity()->id);
+        $this->addElements(array($title, $firstname, $surname, $passportID, $uId, $submit));
 
     }
 }
