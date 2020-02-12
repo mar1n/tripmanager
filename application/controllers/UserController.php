@@ -80,6 +80,10 @@ class UserController extends Zend_Controller_Action
         $passangers = new Model_Passangers();
 
         $this->view->passangers = $passangers->fetchAll();
+
+        $trips = new Model_Trips();
+
+        $this->view->trips = $trips->fetchAll();
     }
 
     public function updateAction()
@@ -223,6 +227,30 @@ class UserController extends Zend_Controller_Action
     public function tripsAction()
     {
         // Action body
+        $itemsDAO = new Model_Trips();
+
+        $itemForm = new Form_Trips();
+        $this->view->form  = $itemForm;
+
+        if( $this->_request->isPost() ) {
+
+            $formData = $this->_request->getPost();
+
+            if( !$itemForm->isValid($formData) ) {
+                $itemForm->populate($formData);
+                //$itemForm->addElement(array("customer_ID", "1"));
+                $this->view->form = $itemForm;
+
+                return;
+            }
+            //unset($itemForm['Checkbox']);
+            $itemsDAO->insert($formData);
+
+            print($itemsDAO->getAdapter()->lastInsertId());
+
+           // return $this->_redirect('/user/list');
+
+        }
     }
 
 }

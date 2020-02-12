@@ -39,5 +39,20 @@ if($this->users != null) {
             </tr>
         <?php endforeach; ?>
     </table>
+    <p><a class="addtrip" href="<?php echo $this->url(array('controller'=>'user',
+            'action'=>'trips'));?>">Add new Trip</a></p>
+    <?php foreach($this->trips as $passanger) : ?>
+        <tr>
+            <td><?php echo $this->escape($passanger->departure_airport);?></td>
+            <td><?php echo $this->escape($passanger->destination_airport);?></td>
+            <td><?php echo $this->escape($passanger->departure_dateTime);?></td>
+            <td><?php echo $this->escape($passanger->arrival_dateTime);?></td>
+            <td>
+                <a class="deletepassanger" href="<?php echo $this->url(array('controller'=>'user',
+                    'action'=>'deletepassanger', 'id'=>$passanger->id));?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
     <p>To log out <a href='/user/logout'>click here</a></p>
 </div>
