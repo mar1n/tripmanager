@@ -39,6 +39,13 @@ if($this->users != null) {
             </tr>
         <?php endforeach; ?>
     </table>
+    <table>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+        </tr>
     <p><a class="addtrip" href="<?php echo $this->url(array('controller'=>'user',
             'action'=>'trips'));?>">Add new Trip</a></p>
     <?php foreach($this->trips as $passanger) : ?>

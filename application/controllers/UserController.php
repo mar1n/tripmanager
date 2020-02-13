@@ -245,7 +245,9 @@ class UserController extends Zend_Controller_Action
             }
             //unset($itemForm['Checkbox']);
             $itemsDAO->insert($formData);
-
+            $values = $itemForm->getValues();
+            $users = $values['users']; //'users' is the element name
+            var_dump($users);
             print($itemsDAO->getAdapter()->lastInsertId());
 
            // return $this->_redirect('/user/list');
