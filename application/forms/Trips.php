@@ -39,11 +39,15 @@ class Form_Trips extends Zend_Form {
 
         $passanger = new Model_Passangers();
 
-        $multicheckboxElement = new Zend_Form_Element_MultiCheckbox("passangers");
-        $multicheckboxElement->addMultiOption(1,'text-1');
-        $multicheckboxElement->addMultiOption(2,'text-2');
-        $multicheckboxElement->addMultiOption(3,'text-3');
-        $multicheckboxElement->addMultiOption(4,'text-4');
+        $multicheckboxElement = new Zend_Form_Element_MultiCheckbox('passangers');
+        foreach ($passanger->fetchAll() as $name) {
+            $asdas = "$name->first_name $name->surname";
+            $multicheckboxElement->addMultiOption($name['id'],$asdas);
+        }
+//
+//        $multicheckboxElement->addMultiOption(2,'text-2');
+//        $multicheckboxElement->addMultiOption(3,'text-3');
+//        $multicheckboxElement->addMultiOption(4,'text-4');
         $answer = new Zend_Form_Element_Checkbox('answer');
         for($i = 0; $i <= 5; $i++){
 
